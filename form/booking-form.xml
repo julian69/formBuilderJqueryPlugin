@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form id="17"
+	alias="booking-auckland">
+		<form_name><![CDATA[booking-auckland]]></form_name>
+		<attribute key="submit_action"><![CDATA[text]]></attribute>
+		<attribute key="next_button_text"><![CDATA[Continue...]]></attribute>
+		<attribute key="submit_button_text"><![CDATA[Send]]></attribute>
+		<attribute key="validate_udt"><![CDATA[-1]]></attribute>
+		<attribute key="required_field_symbol"><![CDATA[]]></attribute>
+		<attribute key="css_class"><![CDATA[fancy-formBuilder-form]]></attribute>
+		<attribute key="redirect_page"><![CDATA[-1]]></attribute>
+		<attribute key="submit_javascript"><![CDATA[]]></attribute>
+		<attribute key="prev_button_text"><![CDATA[Back...]]></attribute>
+		<attribute key="form_template"><![CDATA[{* DEFAULT FORM LAYOUT / pure CSS *}
+
+{$fb_form_header}
+{if $fb_form_done == 1}
+	{* This first section is for displaying submission errors *}
+	{if isset($fb_submission_error) && $fb_submission_error}
+		<div>{$fb_submission_error}</div>
+		{if isset($fb_show_submission_errors) && $fb_show_submission_errors}
+			<div>
+			<ul>
+			{foreach from=$fb_submission_error_list item=thisErr}
+				<li>{$thisErr}</li>
+			{/foreach}
+			</ul>
+   		        </div>
+		{/if}
+	{/if}
+{else}
+	{* this section is for displaying the form *}
+
+	{* we start with the form itself *}
+	{$fb_form_start}
+	<div>{$fb_hidden}</div>
+	<div{if $css_class != ''} class="{$css_class}"{/if}>
+
+
+	{* now with the validation errors *}
+	{if isset($fb_form_has_validation_errors) && $fb_form_has_validation_errors}
+		<div>
+                <span>There was an error with your submission</span>
+		<ul>
+		{foreach from=$fb_form_validation_errors item=thisErr}
+			<li>{$thisErr}</li>
+		{/foreach}
+		</ul>
+		</div>
+	{/if}
+	{if isset($captcha_error) && $captcha_error}
+		<div>{$captcha_error}</div>
+	{/if}
+
+
+	{if $total_pages gt 1}<span>{$title_page_x_of_y}</span>{/if}
+	{foreach from=$fields item=entry}
+		{if $entry->display == 1}
+			{strip}
+			{if $entry->needs_div == 1}
+				<div
+				{if $entry->required == 1 || $entry->css_class != '' || $entry->valid == 0} class="
+					{if $entry->required == 1}required{/if}
+					{if $entry->css_class != ''} {$entry->css_class}{/if}
+					{if $entry->valid == 0} fb_invalid{/if}
+					"
+				{/if}
+				>
+			{/if}
+			{if $entry->hide_name == 0}
+				<label " {if $entry->multiple_parts != 1} for="{$entry->input_id}"{/if}>{$entry->name}
+				</label>
+			{/if}
+			{if $entry->multiple_parts == 1}
+				{section name=numloop loop=$entry->input}
+					{if $entry->label_parts == 1}
+						<div>{$entry->input[numloop]->input}&nbsp;{$entry->input[numloop]->name}</div>
+					{else}
+						{$entry->input[numloop]->input}
+					{/if}
+					{if isset($entry->input[numloop]->op) && $entry->input[numloop]->op}{$entry->input[numloop]->op}{/if}
+				{/section}
+			{else}
+				{if $entry->smarty_eval == '1'}{eval var=$entry->input}{else}{$entry->input}{/if}
+			{/if}
+			{if $entry->helptext != ''}&nbsp;<a href="javascript:fbht('{$entry->field_helptext_id}')"><img src="modules/FormBuilder/images/info-small.gif" alt="Help" /></a>
+					<span id="{$entry->field_helptext_id}" style="display:none" ">{$entry->helptext}</span>{/if}
+			{if $entry->valid == 0}&nbsp;<img src="modules/FormBuilder/images/error.png" alt="{$entry->error} {$entry->name}" title="{$entry->error} {$entry->name}" />{/if}
+			{if $entry->required_symbol != ''}
+				<span>&nbsp;{$entry->required_symbol}</span>
+			{/if}
+			{if $entry->needs_div == 1}
+				</div>
+			{/if}
+			{/strip}
+		{/if}
+	{/foreach}
+	{if $has_captcha == 1}
+		<div class="captcha">{$graphic_captcha}{$title_captcha}<br />{$input_captcha}</div>
+	{/if}
+	<div class="financeSubmitNov8">{$prev}{$submit}</div>
+        <div class="clearfix"></div>
+	</div>
+	{$fb_form_end}
+{/if}
+{$fb_form_footer}]]></attribute>
+		<attribute key="list_delimiter"><![CDATA[,]]></attribute>
+		<attribute key="predisplay_udt"><![CDATA[-1]]></attribute>
+		<attribute key="predisplay_each_udt"><![CDATA[-1]]></attribute>
+		<attribute key="input_button_safety"><![CDATA[]]></attribute>
+		<attribute key="unspecified"><![CDATA[[unspecified]]]></attribute>
+		<attribute key="submit_response"><![CDATA[<h2>Thanks! Your submissions have been received.</h2>]]></attribute>
+		<attribute key="inline"><![CDATA[1]]></attribute>
+	<field id="413"
+		type="TextField"
+		validation_type="none"
+		order_by="1"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Name]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="414"
+		type="TextField"
+		validation_type="none"
+		order_by="2"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Phone]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="415"
+		type="TextField"
+		validation_type="none"
+		order_by="3"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Email]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text  required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="416"
+		type="TextField"
+		validation_type="none"
+		order_by="4"
+		required="1"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Make]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="417"
+		type="TextField"
+		validation_type="none"
+		order_by="5"
+		required="1"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Model]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="418"
+		type="TextField"
+		validation_type="none"
+		order_by="6"
+		required="1"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Year of manufacturer]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="419"
+		type="TextField"
+		validation_type="none"
+		order_by="7"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Registration]]></field_name>
+			<options>
+			<option name="length"><![CDATA[80]]></option>
+			<option name="readonly"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-input-text required]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="regex"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="420"
+		type="DatePickerField"
+		validation_type=""
+		order_by="8"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Date of Last Service]]></field_name>
+			<options>
+			<option name="date_format"><![CDATA[j F Y]]></option>
+			<option name="date_order"><![CDATA[d-m-y]]></option>
+			<option name="default_blank"><![CDATA[]]></option>
+			<option name="start_year"><![CDATA[2004]]></option>
+			<option name="end_year"><![CDATA[2024]]></option>
+			<option name="default_year"><![CDATA[-1]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-date ]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="421"
+		type="DatePickerField"
+		validation_type=""
+		order_by="9"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Suggested Day]]></field_name>
+			<options>
+			<option name="date_format"><![CDATA[j F Y]]></option>
+			<option name="date_order"><![CDATA[d-m-y]]></option>
+			<option name="default_blank"><![CDATA[]]></option>
+			<option name="start_year"><![CDATA[2004]]></option>
+			<option name="end_year"><![CDATA[2024]]></option>
+			<option name="default_year"><![CDATA[-1]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-date ]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="javascript"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="422"
+		type="TextAreaField"
+		validation_type="none"
+		order_by="10"
+		required="0"
+		hide_label="0"
+		display_in_submission="1">
+			<field_name><![CDATA[Special Requirements]]></field_name>
+			<options>
+			<option name="wysiwyg"><![CDATA[]]></option>
+			<option name="rows"><![CDATA[]]></option>
+			<option name="cols"><![CDATA[]]></option>
+			<option name="length"><![CDATA[]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="css_class"><![CDATA[custom-textarea]]></option>
+			<option name="helptext"><![CDATA[]]></option>
+			<option name="field_logic"><![CDATA[]]></option>
+			<option name="default"><![CDATA[]]></option>
+			<option name="clear_default"><![CDATA[]]></option>
+			<option name="html5"><![CDATA[]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+	<field id="423"
+		type="DispositionEmail"
+		validation_type=""
+		order_by="11"
+		required="0"
+		hide_label="0"
+		display_in_submission="">
+			<field_name><![CDATA[Email to Dealer]]></field_name>
+			<options>
+			<option name="email_subject"><![CDATA[Parts Enquiry]]></option>
+			<option name="send_using"><![CDATA[to]]></option>
+			<option name="email_from_name"><![CDATA[Parts Enquiry]]></option>
+			<option name="email_from_address"><![CDATA[website@bayswatervehicles.co.nz]]></option>
+			<option name="email_cc_address"><![CDATA[support@zeanz.com]]></option>
+			<option name="use_bcc"><![CDATA[1]]></option>
+			<option name="destination_address"><![CDATA[saudadeh@gmail.com]]></option>
+			<option name="destination_address"><![CDATA[hastingsparts@bayswatervehicles.co.nz]]></option>
+			<option name="field_alias"><![CDATA[]]></option>
+			<option name="html_email"><![CDATA[1]]></option>
+			<option name="email_template"><![CDATA[<h1>Service Booking Enquiry</h1>
+<strong>Date of Submission</strong>: {$sub_date}<br />
+
+<hr />
+{if $fld_413 != "" && $fld_413 != "[unspecified]" }<strong>Full Name:</strong> {$fld_413}<br />{/if}
+{if $fld_31 != "" && $fld_31 != "[unspecified]" }<strong>Address:</strong> {$fld_31}<br />{/if}
+{if $fld_67 != "" && $fld_67 != "[unspecified]" }<strong>Town/City:</strong> {$fld_67}<br />{/if}
+{if $fld_33 != "" && $fld_33 != "[unspecified]" }<strong>Postcode:</strong> {$fld_33}<br />{/if}
+{if $fld_414 != "" && $fld_414 != "[unspecified]" }<strong>Telephone Number:</strong> {$fld_414}<br />{/if}
+{if $fld_415 != "" && $fld_415 != "[unspecified]" }<strong>Email Address:</strong> {$fld_415}<br />{/if}
+{if $fld_36 != "" && $fld_36 != "[unspecified]" }<strong>Preferred Contact Method:</strong> {$fld_36}<br />{/if}
+{if $fld_416 != "" && $fld_416 != "[unspecified]" }<strong>Your Vehicle:</strong> {$fld_416}<br />{/if}
+{if $fld_417 != "" && $fld_417 != "[unspecified]" }<strong>Vehicle Registration:</strong> {$fld_417}<br />{/if}
+{if $fld_72 != "" && $fld_72 != "[unspecified]" }<strong>Vehicle Mileage:</strong> {$fld_72}<br />{/if}
+{if $fld_41 != "" && $fld_41 != "[unspecified]" }<strong>Service Required:</strong> {$fld_41}<br />{/if}
+{if $fld_42 != "" && $fld_42 != "[unspecified]" }<strong>WOF Required:</strong> {$fld_42}<br />{/if}
+{if $fld_73 != "" && $fld_73 != "[unspecified]" }<strong>Loan Car Required:</strong> {$fld_73}<br />{/if}
+{if $fld_44 != "" && $fld_44 != "[unspecified]" }<strong>Preferred Date:</strong> {$fld_44}<br />{/if}
+{if $fld_75 != "" && $fld_75 != "[unspecified]" }<strong>Preferred Time:</strong> {$fld_75}<br />{/if}
+{if $fld_422 != "" && $fld_422 != "[unspecified]" }<strong>Comments:</strong> {$fld_422}<br />{/if}]]></option>
+			<option name="email_encoding"><![CDATA[utf-8]]></option>
+			<value><![CDATA[]]></value>
+			</options>
+</field>
+</form>

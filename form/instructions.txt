@@ -1,0 +1,55 @@
+1 - Include the following links inside the header section and pass it the right paths (it the Jquery and bootstrap links have been already inlcuded you will only need to use the "form spesific files":
+
+ <!-- The next links must be included if they were not already ========================================================= -->
+
+		 <!-- jquery link -->
+		 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+
+		 <!-- bootstrap links -->
+		 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		<!-- form spesific files -->
+		<link href="form.css" rel="stylesheet" />
+		<script type="text/javascript" src="jquery.form.js"></script>
+
+<!-- up to here ======================================================================================================== -->
+
+
+2 - Inlcude this piece of Jquery before the body closing tag and replace "your_form_id_here"  with you are actual form id (don't forget to add it the {literal} smarty tags and remove the document ready line if it already exists): 
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+		$("#your_form_id_here").fancy_formbuilder_form({
+			  reset: true, // reset button or not
+	          required_default: true, // required symbol or not
+	          required_message: "", // required symbol content
+	          validation: true, // validation yes or not
+	          error_message: "", // error message content
+	          licence: true, // driver license or not
+	          licence_path: "", // path to reach the img
+	          terms: true, // terms and conditions or not
+	          form_width: "100%", 
+	          form_margin: "15px auto",
+	          button_bgcolor: "#5bc0de",
+	          button_border_color: "#46b8da",
+	          button_color: "#fff"
+		});
+});
+</script>
+
+
+3- Go to the form builder and import this file "fancy-formBuilder-form.xml" and use it as usual (make sure the jquery code is in the same page than the form)
+
+
+
+Notes:
+
+- The form is 100% with and it will center itself automatically, so the best is to wrapp it and modify the size and position of the container.
+- Required fields must be set up from the cms.
+- You can add, remove or modify the fileds from the cms but you must keep the classes they have.
+- In the case you need to modify the structure of the form, you will need to follow the existing one.
+- the validation option only checks the data on the browser by adding from the form filder the class "required" to each element. If you want to validate on both sides, you should ermove the class required and check the required checkbox insted....
+
+

@@ -1,0 +1,64 @@
+1 - Include the following links inside the header section and pass it the right paths (it the Jquery and bootstrap links have been already inlcuded you will only need to use the "form spesific files":
+
+ <!-- The next links must be included if they were not already ========================================================= -->
+
+		 <!-- jquery link -->
+		 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+
+		 <!-- bootstrap links -->
+		 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		<!-- form spesific files -->
+		<link href="form.css" rel="stylesheet" />
+		<script type="text/javascript" src="jquery.form.js"></script>
+
+<!-- up to here ======================================================================================================== -->
+
+
+2 - Inlcude this piece of Jquery before the body closing tag and replace "your_form_id_here"  with you are actual form id (don't forget to add it the {literal} smarty tags and remove the document ready line if it already exists): 
+Here there are two ways of calling the plugin: with parameters or without them. Leave only one
+
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+		// with parameters
+		$("#your_form_id_here").fancy_formbuilder_form({
+			  reset: true, // reset button or not
+	          required_default: true, // required symbol or not
+	          required_message: "", // required symbol content
+	          validation: true, // validation yes or not
+	          error_message: "", // error message content
+	          licence: false, // driver license or not
+	          licence_path: "", // path to reach the img
+	          terms: false, // terms and conditions or not
+	          form_width: "100%", 
+	          form_margin: "15px auto",
+	          button_bgcolor: "#5bc0de",
+	          button_border_color: "#46b8da",
+	          button_color: "#fff"
+		});
+
+		// without parameters
+		$("#your_form_id_here").fancy_formbuilder_form();
+});
+</script>
+
+
+3- Go to the form builder and import this file "fancy-formBuilder-form.xml" and use it as usual (make sure the jquery code is in the same page than the form)
+
+
+
+Notes:
+
+- You can run the plug-in many times in the same page. There will be some validation errors since the formBuilder creates IDs in the background and sometimes they match with the other form's IDs. I tried to avoid using IDs always a had to add class or ID. 
+- The form is 100% with and it will center itself automatically, so the best is to wrapp it and modify the size and position of the container.
+- Required fields must be set up from the cms.
+- You can add, remove or modify the fileds from the cms but you must keep the classes they have.
+- In the case you need to modify the structure of the form, you will need to follow the existing one.
+- you don't need to pass any value when calling the plugin. The ones in the example above are the default ones and they could either be there or not unless you want to modify some of them.
+- the form in the sample file (form.html) was copied and pasted from the formBuilder's form source. So it's exaclty what you get by usign the form builder.
+
+
+
